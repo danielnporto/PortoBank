@@ -2,15 +2,15 @@ package main.java.com.portobank.core;
 
 public class Account {
 
-    public String accNome;
-    public int accId;
+    private String accNome;
+    private int accId;
     private double saldo;
     private double transacaoAnterior;
     private double investimento;
-    private double taxaJuros = 1.0125;
 
     public Account(String accNome, int accId){
-
+        this.accNome = accNome;
+        this.accId = accId;
     }
 
     public void deposito(double valor){
@@ -22,13 +22,14 @@ public class Account {
 
     public void retirada(double valor){
         if(valor != 0){
-            this.saldo -= valor;    
+            this.saldo -= valor;
             transacaoAnterior = -valor;
         }
     }
 
     public void investimento(int meses){
-        this.investimento = (this.saldo * this.taxaJuros);
+        double taxaJuros = 1.0125;
+        this.investimento = (this.saldo * taxaJuros);
     }
 
     public double getSaldo(){
@@ -41,5 +42,13 @@ public class Account {
 
     public double getInvestimento() {
         return investimento;
+    }
+
+    public int getAccId() {
+        return accId;
+    }
+
+    public String getAccNome() {
+        return accNome;
     }
 }
